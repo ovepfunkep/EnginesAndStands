@@ -28,7 +28,7 @@ namespace ConsoleEngineTests.Services
                 Console.WriteLine();
                 Console.WriteLine();
             }
-            ShowMenu($@"Tests available {(testStand.Logger == null ? "" : "\n(Logs could after be found at this location: {Program.LogsLocation})")}", 
+            ShowMenu($@"Tests available {(testStand.Logger == null ? "" : $"\n(Logs could after be found at this location: {Program.LogsLocation})")}", 
                      testOptions);
         }
 
