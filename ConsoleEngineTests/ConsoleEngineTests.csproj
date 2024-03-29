@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog" Version="4.0.0-dev-02122" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00972" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EngineSimulationLibrary\EngineSimulationLibrary.csproj" />
   </ItemGroup>
 

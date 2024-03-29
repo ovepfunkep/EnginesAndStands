@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EngineSimulationLibrary.Models.Engines;
-using Microsoft.Extensions.Logging;
 
+using Serilog;
 namespace EngineSimulationLibrary.Models
 {
     public class TestStand(short ambientTemperature, ILogger? logger = null)
@@ -28,7 +28,7 @@ namespace EngineSimulationLibrary.Models
                 while (clonedEngine.CurrentTemperature < clonedEngine.OverheatTemperature)
                 {
                     clonedEngine.EvaluateOneSecondOfWorking(AmbientTemperature);
-                    Logger?.LogInformation(@"Current time step: {secondsRunning}
+                    Logger?.Information(@"Current time step: {secondsRunning}
 Engine's temperature = {currentTemperature}",
                                           clonedEngine.SecondsRunning,
                                           clonedEngine.CurrentTemperature);
@@ -63,7 +63,7 @@ Engine's temperature = {currentTemperature}",
                         torqueOnMaxPower = testEngine.CurrentTorque;
                         crankshaftSpeedOnMaxPower = testEngine.CurrentCrankshaftSpeed;
                     }
-                    Logger?.LogInformation(@"Current time step: {secondsRunning}
+                    Logger?.Information(@"Current time step: {secondsRunning}
 Engine's current power = {currentPower}",
                                           testEngine.SecondsRunning,
                                           testEngine.CurrentPower);
