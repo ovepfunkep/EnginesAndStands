@@ -23,7 +23,9 @@ internal class Program
         double heatingSpeedToCrankshafRotationSpeedRatio = 0.0001;
         double coolingToTemperatureRatio = 0.1;
         #endregion
-        File.Delete(LogsLocation);
+
+        if (File.Exists(LogsLocation)) 
+            File.Delete(LogsLocation);
 
         using var logger = new LoggerConfiguration()
             .WriteTo

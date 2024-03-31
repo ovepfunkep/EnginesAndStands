@@ -8,10 +8,10 @@ using EngineSimulationLibrary.Models.Engines;
 using Serilog;
 namespace EngineSimulationLibrary.Models
 {
-    public class TestStand(short ambientTemperature, ILogger? logger = null)
+    public class TestStand(double ambientTemperature, ILogger? logger = null)
     {
         // Температура среды
-        public short AmbientTemperature { get; set; } = ambientTemperature;
+        public double AmbientTemperature { get; set; } = ambientTemperature;
 
         public ILogger? Logger { get; set; } = logger;
 
