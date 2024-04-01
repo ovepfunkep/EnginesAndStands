@@ -12,12 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using EngineSimulationLibrary.Models;
 using EngineSimulationLibrary.Models.Engines;
 
-using Serilog;
-
-using WPFEngineTests.Models;
 using WPFEngineTests.ViewModels;
 
 using static WPFEngineTests.TestsHelper;
@@ -29,7 +25,7 @@ namespace WPFEngineTests
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly MainWindowViewModel _viewModel = new MainWindowViewModel();
+        private readonly MainWindowViewModel _viewModel = new();
 
         public MainWindow()
         {
@@ -44,25 +40,29 @@ namespace WPFEngineTests
             var selectedEngine = ((EngineViewModel)((ComboBox)sender).SelectedItem).Engine;
 
             List<TestViewModel> availableTests = [
-                new("Heat test", GetOverheatTestResultsAsync(_viewModel.TestStand, selectedEngine))
+                new("Heat test", () => GetOverheatTestResultsAsync(_viewModel.TestStand, selectedEngine))
                 ];
 
-            if (selectedEngine is InternalCombustionEngine ICE) 
-                availableTests.Add(new ("Power test", GetPowerTestResultsAsync(_viewModel.TestStand, ICE)));
-            
+            if (selectedEngine is InternalCombustionEngine ICE)
+                availableTests.Add(new("Power test", () => GetPowerTestResultsAsync(_viewModel.TestStand, ICE)));
+
             availableTests.ForEach(_viewModel.AvailableTests.Add);
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (((CheckBox)sender).IsChecked ?? false)
-                _viewModel.TestStand.model.Logger = _viewModel.Logger;
-            else _viewModel.TestStand.model.Logger = null;
+            _viewModel.TestStand.model.Logger = _viewModel.Logger;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _viewModel.TestStand.model.Logger = null;
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            tBlockResults.Text = await ((TestViewModel)cbAvailableTests.SelectedItem).Execute;
+            if (cbAvailableTests.SelectedItem != null)
+                tBlockResults.Text = await ((TestViewModel)cbAvailableTests.SelectedItem).Execute.Invoke();
         }
     }
 }

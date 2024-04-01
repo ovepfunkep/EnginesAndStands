@@ -12,9 +12,9 @@ namespace WPFEngineTests.ViewModels
     public class TestViewModel : ObservableObject
     {
         public string Name { get; set; }
-        public Task<string> Execute { get; set; }
+        public Func<Task<string>> Execute { get; set; }
 
-        public TestViewModel(string name, Task<string> execute)
+        public TestViewModel(string name, Func<Task<string>> execute)
         {
             Name = name;
             Execute = execute;
