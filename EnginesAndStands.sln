@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EngineSimulationLibrary", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleEngineTests", "ConsoleEngineTests\ConsoleEngineTests.csproj", "{221FD5A9-449C-4BA5-8023-0C13E6847817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFEngineTests", "WPFEngineTests\WPFEngineTests.csproj", "{A669C847-1C9E-4B96-AA05-CE2620C516B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFEngineTests", "WPFEngineTests\WPFEngineTests.csproj", "{A669C847-1C9E-4B96-AA05-CE2620C516B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F60F3492-8B53-4751-B3E9-BB10D24A6707}"
+	ProjectSection(SolutionItems) = preProject
+		Technical task.pdf = Technical task.pdf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

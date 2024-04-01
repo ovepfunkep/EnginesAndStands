@@ -8,6 +8,13 @@ namespace EngineSimulationLibrary
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Function find nearest points from below and above 
+        /// based on input linear graph.
+        /// </summary>
+        /// <param name="data">Linear graph points</param>
+        /// <param name="targetV">Point to get closest points</param>
+        /// <returns></returns>
         public static (double V1, double M1, double V2, double M2) FindNearestPoints(this List<(double V, double M)> data, double targetV)
         {
             var sortedData = data.OrderBy(pair => pair.V).ToList();

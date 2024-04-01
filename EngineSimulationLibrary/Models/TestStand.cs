@@ -8,13 +8,30 @@ using EngineSimulationLibrary.Models.Engines;
 using Serilog;
 namespace EngineSimulationLibrary.Models
 {
-    public class TestStand(double ambientTemperature, ILogger? logger = null)
+    public class TestStand
     {
         // Температура среды
-        public double AmbientTemperature { get; set; } = ambientTemperature;
+        public double AmbientTemperature { get; set; }
 
-        public ILogger? Logger { get; set; } = logger;
+        public ILogger? Logger { get; set; }
 
+        /// <summary>
+        /// Create TestStand instance
+        /// </summary>
+        /// <param name="ambientTemperature">Ambient test stand temperature</param>
+        /// <param name="logger">Logger or null</param>
+        public TestStand(double ambientTemperature, ILogger? logger = null)
+        {
+            AmbientTemperature = ambientTemperature;
+            Logger = logger;
+        }
+
+        /// <summary>
+        /// Test calculates and displays the time in seconds that will pass from 
+        /// internal combustion engine start until it overheats.
+        /// </summary>
+        /// <param name="testEngine">Testing engine</param>
+        /// <returns>Task with int</returns>
         public async Task<int> GetSecondsAmountNeededForOverheatAsync(IEngine testEngine)
         {
             // Thread safety
@@ -38,6 +55,13 @@ Engine's temperature = {currentTemperature}",
             return clonedEngine.SecondsRunning;
         }
 
+        /// <summary>
+        /// The test calculates and outputs the maximum engine power per kW 
+        /// as well as the Crankshaft rotation speed to radian/sec 
+        /// at which this maximum power is achieved.
+        /// </summary>
+        /// <param name="testEngine">Testing engine</param>
+        /// <returns>Task with tuple with output data</returns>
         public async Task<(double maxPower, double maxTorque, double maxSpeed)>
             GetMetricsWhenMaxPowerWhileAcceleratingAsync(InternalCombustionEngine testEngine)
         {

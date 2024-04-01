@@ -85,7 +85,10 @@ namespace EngineSimulationLibrary.Models.Engines
         #endregion
 
         #region public methods
-        // Сэмулировать одну секунду работы (или простоя)
+        /// <summary>
+        /// Evaluates one second of engine work (or staying still)
+        /// </summary>
+        /// <param name="ambientTemperature"></param>
         public void EvaluateOneSecondOfWorking(double ambientTemperature)
         {
             CurrentTemperature += GetHeatSpeed() - GetCoolingSpeed(ambientTemperature);
@@ -93,6 +96,10 @@ namespace EngineSimulationLibrary.Models.Engines
             SecondsRunning++;
         }
 
+        /// <summary>
+        /// Resets engine properties
+        /// </summary>
+        /// <param name="ambientTemperature"></param>
         public void Reset(double ambientTemperature)
         {
             CurrentTemperature = ambientTemperature;
